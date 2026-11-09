@@ -139,10 +139,11 @@ function stayTab(){
   ${needAgree()?`<div class="done"><span>✍️</span><b>Citi Stayz Guest Agreement</b><em>Signed</em></div>`:""}`;
 }
 function discoverTab(){
-  const cats=[["🦘","Canberra attractions","Kangaroos, galleries and must-sees · 15 tours"],["🍷","Wine tours","Small-group winery days · 7 tours"],["🏔️","Snow trips","Day trips to the snowfields"],["🚐","Airport transfers","Door to door, no stress"],["🌷","Floriade","Canberra's spring flower festival"]];
+  const V="https://www.viator.com/partner-shop/citistayz/";
+  const cats=[["🦘","Canberra attractions","Kangaroos, galleries and must-sees · 15 tours",V+"W-ce18fa20-9589-415c-93e8-9b873329c826"],["🍷","Wine tours","Small-group winery days · 7 tours",V+"W-36ff24db-2b51-4614-943f-757e3f28a1aa"],["🏔️","Snow trips","Day trips to the snowfields · 2 tours",V+"W-278858bd-dcd7-4ad8-b107-5a2d090fbaf4"],["🚕","Airport transfers","Fixed price, door to door · 2 options",V+"W-2afb8dd9-8d42-4132-834a-87344689fe8b"],["🌷","Floriade","Canberra's spring flower festival · 2 tours",V+"W-e1b13993-27b6-4617-87a5-6a0c594e1de5"]];
   return `<h2>Discover Canberra</h2>
   <div class="viator"><b style="font-size:18px">Our hand-picked Canberra tours</b><p style="margin:6px 0 12px;opacity:.9">Local tours, wineries and attractions we recommend to our guests. Book in a few taps.</p><a class="btn" style="background:#FFB600;color:#020051" href="${D.viator}" onclick="saveState()">See all tours ↗</a></div>
-  ${cats.map(([i,n,s])=>`<button class="row" onclick="saveState();location.href='${D.viator}'"><div class="ic">${i}</div><div class="tx"><b>${n}</b><span>${s}</span></div><div class="ch">↗</div></button>`).join("")}
+  ${cats.map(([i,n,s,u])=>`<button class="row" onclick="saveState();location.href='${u}'"><div class="ic">${i}</div><div class="tx"><b>${n}</b><span>${s}</span></div><div class="ch">↗</div></button>`).join("")}
   <h3>Free things nearby</h3>
   ${D.recs.map(r=>`<button class="row" onclick="saveState();location.href='${r.url}'"><div class="ic">${r.ic}</div><div class="tx"><b>${esc(r.name)}</b><span>${esc(r.sub)}</span></div><div class="ch">↗</div></button>`).join("")}`;
 }
