@@ -1,0 +1,39 @@
+name: Save Conduit media
+on:
+  push:
+    paths: ["assets/conduit/urls.txt"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  save:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download every photo and video
+        run: |
+          cd assets/conduit
+          echo "{" > map.json; first=1; ok=0; fail=0
+          while read -r url; do
+            [ -z "$url" ] && continue
+            id="${url##*/}"
+            if curl -sSfL --retry 3 -o "tmp_$id" "$url"; then
+              mt=$(file --brief --mime-type "tmp_$id")
+              case "$mt" in
+                image/jpeg) ext=jpg;; image/png) ext=png;; image/webp) ext=webp;; image/gif) ext=gif;; image/heic) ext=heic;;
+                video/mp4) ext=mp4;; video/quicktime) ext=mov;; video/webm) ext=webm;; *) ext=bin;;
+              esac
+              mv "tmp_$id" "$id.$ext"; ok=$((ok+1))
+              [ $first -eq 0 ] && echo "," >> map.json; first=0
+              printf '"%s":"/assets/conduit/%s.%s"' "$url" "$id" "$ext" >> map.json
+            else
+              fail=$((fail+1)); echo "FAILED $url" >> failed.txt; rm -f "tmp_$id"
+            fi
+          done < urls.txt
+          echo "}" >> map.json
+          echo "saved=$ok failed=$fail" > result.txt; cat result.txt
+      - name: Commit
+        run: |
+          git config user.name "citistayz-bot"; git config user.email "bot@citistayz.com"
+          git add assets/conduit; git commit -m "Save Conduit photos and videos" || echo nothing
+          git push
