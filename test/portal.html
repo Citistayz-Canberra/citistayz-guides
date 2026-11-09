@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Your Stay (TEST)</title><meta name="robots" content="noindex">
+<style>
+:root{--bg:#fff;--ink:#16181d;--muted:#6b7079;--line:#ececec;--soft:#f4f4f5;--brand:#020051;--accent:#FFB600;--ok:#1f8a4c}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#fff}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:#eef0f2;color:var(--ink);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.app{max-width:480px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;padding-bottom:110px}
+.hero{height:300px;background:linear-gradient(160deg,#020051,#14127a 65%,#3a2f6b);background-size:cover;background-position:center;position:relative;color:#fff}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.45))}
+.hero .t{position:absolute;left:24px;right:24px;bottom:56px;z-index:1}.hero .hey{font-size:15px;opacity:.9}.hero h1{margin:4px 0 0;font-size:25px;line-height:1.2;font-weight:700}
+.sheetwrap{background:var(--bg);border-radius:26px 26px 0 0;margin-top:-34px;position:relative;z-index:2;padding:26px 22px 10px}
+h2{font-size:24px;line-height:1.25;margin:0 0 14px}h3{font-size:20px;margin:26px 0 10px}
+.row{display:flex;align-items:center;gap:14px;padding:13px 0;cursor:pointer;border:0;background:none;width:100%;text-align:left;font:inherit;color:inherit}
+.row .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:26px;flex:0 0 44px;background:var(--soft)}
+.row .tx{flex:1;min-width:0}.row .tx b{display:block;font-weight:600}.row .tx span{display:block;color:var(--muted);font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .ch{color:#b5b8be;font-size:22px}.lockbadge{color:var(--accent)!important}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 4px}.tile{background:var(--soft);border-radius:16px;padding:14px 16px}.tile span{display:block;color:var(--muted);font-size:14px}.tile b{font-size:16px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 12px;scrollbar-width:none}.chip{border:1px solid #d9dbe0;background:#fff;border-radius:999px;padding:8px 16px;font:inherit;font-size:15px;white-space:nowrap;cursor:pointer;color:var(--ink)}.chip.on{background:#020051;color:#fff;border-color:#020051}
+.cards{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:none}
+.card{flex:0 0 72%;scroll-snap-align:start;cursor:pointer;border:0;background:none;padding:0;text-align:left;font:inherit;color:inherit}
+.card .im{height:170px;border-radius:18px;background:#ddd center/cover;position:relative}.card .tag{position:absolute;left:10px;top:10px;background:rgba(255,255,255,.85);border-radius:999px;padding:3px 10px;font-size:13px}
+.card b{display:block;margin:10px 4px 0;font-weight:600}.card span{display:block;margin:2px 4px;color:var(--muted)}
+.big{width:100%;border:0;background:none;padding:0;text-align:left;font:inherit;color:inherit;cursor:pointer;margin-bottom:18px}.big .im{height:180px;border-radius:18px;background:#ccc center/cover}.big b{display:block;margin:10px 4px 0}.big span{display:block;margin:2px 4px;color:var(--muted);font-size:15px}
+.done{display:flex;align-items:center;gap:12px;background:#f0faf4;border-radius:14px;padding:12px 14px;margin:8px 0}.done b{flex:1}.done em{font-style:normal;color:var(--ok);font-weight:600;font-size:14px}
+nav.tabs{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:999px;padding:6px;display:flex;gap:4px;box-shadow:0 6px 24px rgba(0,0,0,.12)}
+nav.tabs button{border:0;background:none;font:inherit;font-size:14px;padding:8px 18px;border-radius:999px;cursor:pointer;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:2px}nav.tabs button.on{background:#ebebec}nav.tabs i{font-style:normal;font-size:20px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:30;display:flex;align-items:flex-end;justify-content:center}.ov[hidden]{display:none}
+.pane{background:#fff;width:100%;max-width:480px;max-height:88vh;overflow:auto;border-radius:24px 24px 0 0;padding:20px 22px 34px}
+.pane .x{float:right;border:0;background:var(--soft);border-radius:999px;width:34px;height:34px;font-size:18px;cursor:pointer}
+.pane h3{margin:4px 0 12px}.pane h4{margin:16px 0 4px}.pane ul,.pane ol{padding-left:22px}
+.btn{display:block;width:100%;border:0;border-radius:14px;background:#020051;color:#fff;font:inherit;font-weight:600;padding:15px;margin-top:14px;cursor:pointer;text-align:center;text-decoration:none}.btn.alt{background:var(--soft);color:var(--ink)}
+.opt{display:flex;justify-content:space-between;align-items:center;border:1.5px solid #e2e4e8;border-radius:14px;padding:12px 14px;margin:8px 0;cursor:pointer}.opt.on{border-color:#16181d;background:#fafafa}.opt small{display:block;color:var(--muted)}
+.hl{list-style:none;padding:0}.hl li::before{content:"✓ ";color:var(--ok)}
+.lockbox{background:#fff8ec;border:1.5px dashed var(--accent);border-radius:16px;padding:16px;text-align:center}.code{font-size:30px;font-weight:700;letter-spacing:.08em}
+label{display:block;font-weight:600;margin:14px 0 6px}label small{font-weight:400;color:var(--muted)}input,select,textarea{width:100%;font:inherit;padding:13px 14px;border:1.5px solid #dfe1e6;border-radius:12px;background:#fff}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:400}.check input{width:22px;height:22px;flex:0 0 22px}
+.steps{display:flex;gap:6px;margin:6px 0 18px}.steps i{flex:1;height:5px;border-radius:9px;background:#e5e7eb}.steps i.on{background:#FFB600}
+.agree{max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14px;background:#fafafa}
+canvas{width:100%;height:150px;border:1.5px dashed #c9ccd3;border-radius:12px;background:#fff;touch-action:none}
+.err{color:#c62828;font-size:14px;margin-top:8px}
+.test{margin:20px 22px 0;border:1px dashed #c9ccd3;border-radius:14px;padding:12px 14px;font-size:14px;background:#fafbfc}.test b{display:block;margin-bottom:6px}.test .chips{padding:4px 0}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:90px;background:#16181d;color:#fff;padding:12px 18px;border-radius:12px;z-index:50;font-size:15px;max-width:90%}.toast[hidden]{display:none}
+.cover{min-height:100vh;padding:48px 24px 30px;text-align:center;background:#020051;color:#fff}.cover .logo{width:78%;max-width:320px;margin:0 auto 34px;display:block}.cover h1{color:#fff}.cover .sub{color:#c9c8e6}.cover .cbox{color:var(--ink)}.cover .btn{background:#FFB600;color:#020051}.cover>.cs{color:#c9c8e6!important}.cw{color:#FFB600;letter-spacing:.18em;text-transform:uppercase;font-size:13px;font-weight:600}.cover h1{font-size:34px;margin:6px 0 6px}.sub{color:var(--muted);margin:0 0 24px}.cbox{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;text-align:left;box-shadow:0 4px 18px rgba(0,0,0,.05)}.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}.cl{color:var(--muted);font-size:13px}.cv{font-weight:600;font-size:17px}.cs{color:var(--muted);font-size:13px}
+.viator{border-radius:18px;padding:18px;background:linear-gradient(135deg,#0b3d2e,#186a52);color:#fff;margin-bottom:14px}
+</style></head><body>
+<div class="app" id="app"></div>
+<div class="ov" id="ov" hidden><div class="pane" id="pane"></div></div>
+<div class="toast" id="toast" hidden></div>
+<script>
+const D={"booking": {"first": "Shelley", "last": "T.", "res": "TEST-001", "ci": "2026-11-12", "co": "2026-11-15", "ciTime": "3:00 PM", "coTime": "10:00 AM", "guests": 2}, "prop": {"name": "Braddon 1BD - Walk to Tram - Gym - Free Parking", "addr": "17/10 Ipima Street", "arrival": "https://www.citistayz.com/bra-ast", "keywhere": "<p>\ud83d\udccd <b>Key pick-up: 23 Lonsdale Street, Braddon<\/b><br>Keys are ready from 3:00pm on arrival day, unless we&#x27;ve confirmed an early check-in.<\/p>", "manual": "<h4>\ud83c\udf73 Cooktop &amp; Oven<\/h4><p>Turn on the <b>wall switch<\/b> near the kitchen first. It powers <b>both the cooktop and the oven<\/b>.<\/p><h4>\ud83d\udecf Bedding &amp; Linen<\/h4><p>Fresh linen is supplied for the number of guests booked. There&#x27;s a <b>spare sheet set folded in the cupboard<\/b>.<\/p><p>Using the <b>sofa bed<\/b>? Its linen and bedding are in the <b>main bedroom wardrobe<\/b>.<\/p><p>Need <b>extra linen<\/b>? Just let us know. Additional charges may apply.<\/p><h4>\ud83d\udcfa Television<\/h4><p>The <b>Smart TV<\/b> is connected to the internet. Feel free to log in to your streaming apps, just remember to <b>log out before you leave<\/b>.<\/p><h4>\ud83d\udd14 Intercom<\/h4><ol><li><p>Ask them to <b>dial 17<\/b> on the intercom.<\/p><\/li><li><p>Answer the call inside the apartment.<\/p><\/li><li><p>Press <b>Talk<\/b>, then the <b>key/bell<\/b> button. This lets them into the lifts.<\/p><\/li><\/ol><h4>\ud83d\udd11 Lost keys &amp; lockouts<\/h4><ul><li><p><b>Lost keys:<\/b> $275 replacement fee (inc GST)<\/p><\/li><li><p><b>Lockout (keys left inside):<\/b> $165 call-out fee (inc GST)<\/p><\/li><\/ul><h4>\ud83e\uddf4 Supplies<\/h4><p>We provide a <b>starter supply<\/b> of essentials. Top-ups can be arranged and <b>may incur an extra charge<\/b>.<\/p>", "about": "<p>A stylish 1-bedroom apartment fitted out for a proper stay, not just a night or two. The kitchen&#x27;s fully equipped for real cooking, and you&#x27;ve got in-unit laundry, fast WiFi, and a smart TV for downtime. Sleeps up to 4 comfortably. Thoughtful touches throughout make it feel like home rather than a hotel room.<\/p>", "faqs": "<p><b>Is the apartment cleaned during my stay?<\/b><br>Daily housekeeping isn&#x27;t included. You can book a mid-stay clean right here in your portal.<\/p><p><b>Is linen included?<\/b><br>Yes. Linen is supplied for the number of guests on your booking.<\/p><p><b>What supplies are included?<\/b><br>A starter pack of kitchen, bathroom and cleaning supplies. Top-ups come with a mid-stay clean, or you&#x27;re welcome to buy your own.<\/p><p><b>Can I get a tax invoice?<\/b><br>Yes. Email bookings@citistayz.com and we&#x27;ll send one.<\/p><p><b>Can I smoke?<\/b><br>No. The apartment and balcony are strictly non-smoking. A cleaning fee applies.<\/p><p><b>Quiet hours?<\/b><br>10:00pm to 8:00am. No parties or events.<\/p>", "safety": "<p><b>\ud83d\udea8 In Case of an Emergency<\/b><\/p><p>If there is an emergency, please <b>dial 000 immediately<\/b>. Once it is safe to do so, notify our team so we can assist if needed.<\/p><p>Please follow <b>all evacuation instructions<\/b> provided via the building\u2019s speaker system.<\/p><p><b>\ud83d\udd14 Smoke Alarm<\/b><\/p><p>For your safety, the apartment is fitted with smoke alarms. Please <b>do not cover or tamper with the smoke alarm<\/b> under any circumstances.<\/p><p>When cooking:<\/p><p>Avoid opening the <b>hallway door<\/b>, as this may trigger the building\u2019s smoke alarm system and result in fines for false alarms.<\/p><p>If additional ventilation is needed, please <b>open the balcony door instead<\/b>.<\/p><p><b>\ud83c\udfc3 Evacuation Procedure<\/b><\/p><p>In the event of an evacuation: Follow the instructions announced over the hallway speakers.<\/p><p>Refer to the <b>emergency evacuation map located near the elevators<\/b>, which shows all exits and the designated assembly area.<\/p><p><b>\ud83d\udeaa Fire Stairs<\/b><\/p><p>Fire stairs are located on <b>every level<\/b> of the building. Your apartment key can also be used to <b>access fire doors if required<\/b>.<\/p>", "bins": "<p>Ground level, to the <b>left of the double lifts<\/b>. Use your room key to get in.<\/p>", "binsShort": "Where the bins are", "amen": "<p><b>\ud83d\uddd1\ufe0f Bins<\/b><br><p>Ground level, to the <b>left of the double lifts<\/b>. Use your room key to get in.<\/p><\/p><p><b>\ud83d\udcaa Gym<\/b><br><p>Ground floor, <b>across from the double lifts<\/b>. Use your fob to get in.<\/p><\/p><p><b>\ud83d\udeb2 Bike parking<\/b><br><p>Level <b>B1<\/b>. Use your fob to get in.<\/p><\/p>", "parking": "", "parkingShort": "Your car space and how to get there", "guideImg": "https://citistayz-canberra.github.io/citistayz-guides/assets/conduit/7888d59a-9608-4401-a920-4cfe87b259bf.jpg", "hero": ""}, "secret": {"wifiName": "TEST network", "wifiPass": "test-password", "lockbox": "00", "code": "0000"}, "offers": [{"id": "eci", "cat": "Arrival", "name": "Early check-in", "priceLabel": "From $33", "img": "https://citistayz-canberra.github.io/citistayz-guides/assets/conduit/c522582a-d19f-4941-b5c4-50509e22d447.jpg", "desc": "Skip the wait and settle in sooner. Pick your arrival time and we'll confirm once your apartment is ready. Your card is only charged if we approve.", "hl": ["Check in from 12pm", "Only charged if approved", "$33 per hour, up to 3 hours"], "optLabel": "Choose your arrival time", "opts": [{"t": "2:00 PM", "s": "1 hour early", "p": 3300}, {"t": "1:00 PM", "s": "2 hours early", "p": 6600}, {"t": "12:00 PM", "s": "3 hours early", "p": 9900}], "q": "Flight or arrival details (optional)"}, {"id": "keys", "cat": "Arrival", "name": "Extra set of keys", "priceLabel": "$38.50", "img": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80", "desc": "Every stay comes with 1 set of keys. Travelling with someone or on different schedules? Get a second set so you're never waiting on each other. Your card is only charged if we approve.", "hl": ["Only charged if approved"]}, {"id": "lco", "cat": "Departure", "name": "Late check-out", "priceLabel": "From $33", "img": "https://images.unsplash.com/photo-1639677322786-3c8154ebd750?auto=format&fit=crop&w=900&q=80", "desc": "Sleep in and pack at your own pace. Pick your departure time and we'll confirm. Your card is only charged if we approve.", "hl": ["Check out as late as 1pm", "Only charged if approved", "$33 per hour, up to 3 hours", "Price includes GST"], "optLabel": "Departure time", "opts": [{"t": "11:00 AM", "s": "1 hour later", "p": 3300}, {"t": "12:00 PM", "s": "2 hours later", "p": 6600}, {"t": "1:00 PM", "s": "3 hours later", "p": 9900}], "q": "Flight or departure details (optional)"}, {"id": "msc", "cat": "Housekeeping", "name": "Mid-stay cleaning", "priceLabel": "From $88", "img": "https://images.unsplash.com/photo-1760722974657-f64bce2f9cc5?auto=format&fit=crop&w=900&q=80", "desc": "Staying a while? Come home to a fresh, clean apartment partway through your stay. Pick your apartment size and preferred day, and we'll confirm.", "hl": ["Perfect for stays of 1 week or more", "Only charged if approved", "Prices include GST", "Fresh linen and towels included"], "optLabel": "Property size", "opts": [{"t": "1 Bed 1 Bath", "p": 8800}, {"t": "2 Bed 1 Bath", "p": 11000}, {"t": "2 Bed 2 Bath", "p": 13200}, {"t": "3 Bed 2 Bath", "p": 16500}], "q": "Anything we should know? (Optional)"}, {"id": "lin", "cat": "Housekeeping", "name": "Extra sofa bed linen", "priceLabel": "$27.50", "img": "https://images.unsplash.com/photo-1643913590859-c81793b54649?auto=format&fit=crop&w=900&q=80", "desc": "Prefer to sleep separately? We'll supply an extra set of linen for the sofa bed: a flat sheet, doona and 2 pillows. Already paid for an extra guest? Linen is included, no need to add this.", "hl": ["Only charged if approved"]}, {"id": "ext", "cat": "Extra nights", "name": "Extend my stay", "priceLabel": "Save 5%", "img": "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=900&q=80", "desc": "Stay longer, save 5%. Pick your new check-out date and we'll confirm availability. Your card is only charged once approved.", "hl": ["5% off your nightly rate", "No need to pack up and move", "Subject to availability"], "q": "What date would you like to check out instead?"}, {"id": "early", "cat": "Extra nights", "name": "Arrive a day early", "priceLabel": "Save 5%", "img": "https://citistayz-canberra.github.io/citistayz-guides/assets/conduit/e1435a61-2f9a-4a7e-8938-a0edd758f766.webp", "desc": "Want to settle in sooner? Add nights before your check-in and save 5%. Pick your new arrival date and we'll confirm availability.", "hl": ["5% off your nightly rate", "Arrive rested, not rushed", "Subject to availability"], "q": "What date would you like to check in instead?"}], "agreement": "<p><b>CITI STAYZ GUEST ACCOMMODATION AGREEMENT<\/b><\/p><p>This agreement is made between the Guest and Citi Stayz Pty Ltd (ABN 34 622 119 171) (\"Citi Stayz\", \"we\", \"us\") for the accommodation and dates set out in the reservation below.<\/p><p>Guest: Shelley<br>Property: Braddon 1BD - Walk to Tram - Gym - Free Parking<br>Stay: Thu 12 Nov 2026 to Sun 15 Nov 2026<\/p><p><b>1. TERMS OF STAY<\/b><br>1.1 Check-in is from 3:00pm and check-out is by 10:00am, unless an alternative time has been booked and confirmed in writing by Citi Stayz.<br>1.2 Occupancy is limited to the number of guests stated in the reservation. Additional guests require prior written approval.<br>1.3 The person signing this agreement confirms they are the booking guest, or are authorised to accept these terms on behalf of the booking party.<\/p><p><b>2. CORPORATE AND THIRD-PARTY BOOKINGS<\/b><br>2.1 Where a stay is booked by an employer, travel manager or other third party, the occupying guest agrees to comply with this agreement.<br>2.2 Charges arising from a breach of this agreement, including fees and damage, may be invoiced to the booking party or the guest.<\/p><p><b>3. PROPERTY RULES<\/b><br>3.1 Quiet hours apply from 10:00pm to 8:00am. Parties and events are not permitted.<br>3.2 All properties are strictly non-smoking, including balconies. A cleaning fee applies to any breach.<br>3.3 Pets are not permitted unless approved in writing before arrival.<br>3.4 Building facilities (including pools, gyms, lifts and BBQ areas) are managed by the building, not Citi Stayz, and are used at the guest's own risk. Citi Stayz is not responsible for building closures or maintenance.<br>3.5 Properties are located in central city areas. Some city or construction noise is to be expected.<\/p><p><b>4. KEYS AND ACCESS<\/b><br>4.1 Guests must keep keys and access devices with them at all times. Most doors lock automatically.<br>4.2 A lockout fee of $165 and a lost key fee of $275 per set apply (including GST).<br>4.3 Guests must follow the check-out key instructions provided in their guest guide.<\/p><p><b>5. CARE OF THE PROPERTY<\/b><br>5.1 Guests agree to treat the property with reasonable care.<br>5.2 Guests are responsible for any damage caused during their stay, beyond fair wear and tear.<br>5.3 Additional cleaning charges may apply where the property is left in an unreasonable condition.<\/p><p><b>6. REPORTING ISSUES<\/b><br>6.1 Any issue must be reported to Citi Stayz promptly, with photos where possible.<br>6.2 Guests agree to give Citi Stayz a reasonable opportunity to investigate and resolve an issue before any refund is considered.<\/p><p><b>7. CHANGES AND BREACHES<\/b><br>7.1 Changes or extensions to a stay are at Citi Stayz's discretion and subject to availability.<br>7.2 A breach of this agreement or our Terms and Conditions may result in the stay being terminated without refund.<\/p><p><b>8. ENTIRE TERMS<\/b><br>This agreement is to be read with our House Rules (citistayz.com/houserules) and Terms and Conditions (citistayz.com/terms).<\/p><p><b>ACCEPTANCE<\/b><br>By signing, the Guest confirms they have read, understood and agree to this agreement, the House Rules and the Terms and Conditions. The signature, date and time of acceptance are recorded.<\/p><p>Enquiries: 0493 173 122 | bookings@citistayz.com<\/p>\n", "logo": "https://citistayz-canberra.github.io/citistayz-guides/assets/brand/citistayz-logo.jpg", "viator": "https://www.viator.com/Canberra/d773", "recs": [{"ic": "\ud83c\udfdb\ufe0f", "name": "Australian War Memorial", "sub": "Free entry \u00b7 open daily", "url": "https://www.awm.gov.au/"}, {"ic": "\ud83d\uddbc\ufe0f", "name": "National Gallery of Australia", "sub": "Free general entry", "url": "https://nga.gov.au/"}, {"ic": "\ud83c\udf33", "name": "Lake Burley Griffin", "sub": "Walk, ride or kayak", "url": "https://www.nca.gov.au/attractions/lake-burley-griffin"}]};
+const $=s=>document.querySelector(s);const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const S={cover:true,tab:"stay",cat:"All",phase:"before",channel:"Booking.com",detailsDone:false,agreeDone:false,step:1,req:{}};
+function toast(m){const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(t._t);t._t=setTimeout(()=>t.hidden=true,2600);}
+const fmt=d=>new Date(d+"T12:00:00").toLocaleDateString("en-AU",{weekday:"short",day:"numeric",month:"short"});
+const needAgree=()=>!["CTM","Government"].includes(S.channel);
+const unlocked=()=>S.phase!=="before";
+function sheet(h){$("#pane").innerHTML='<button class="x" onclick="closeSheet()">✕</button>'+h;$("#ov").hidden=false;}
+function closeSheet(){$("#ov").hidden=true;}
+$("#ov").onclick=e=>{if(e.target.id==="ov")closeSheet();};
+
+function render(){
+  const b=D.booking,p=D.prop;
+  if(S.phase==="after"){$("#app").innerHTML=`<div class="hero"><div class="t"><div class="hey">Thanks ${esc(b.first)}</div><h1>This stay has ended.</h1></div></div><div class="sheetwrap"><h2>Thanks for staying with Citi Stayz</h2><p>This link has expired for your security. We hope to see you again soon.</p><a class="btn" href="https://www.citistayz.com" target="_blank" rel="noopener">Book your next stay direct</a><p style="color:var(--muted);font-size:14px;margin-top:14px">Need anything? Call 0493 173 122 or email bookings@citistayz.com</p></div>${testPanel()}`;wireTest();return;}
+  if(S.cover&&!(S.detailsDone&&(!needAgree()||S.agreeDone))){renderCover();return;}
+  if(!S.detailsDone||(needAgree()&&!S.agreeDone)){renderGate();return;}
+  const hero=p.hero?`style="background-image:url('${p.hero}')"`:"";
+  let body="";
+  if(S.tab==="stay")body=stayTab();else if(S.tab==="discover")body=discoverTab();else body=chatTab();
+  $("#app").innerHTML=`<div class="hero" ${hero}><div class="t"><div class="hey">Hey ${esc(b.first)}</div><h1>Welcome ${esc(b.first)}, we're glad you're staying with Citi Stayz.</h1></div></div><div class="sheetwrap">${body}</div>${testPanel()}
+  <nav class="tabs">${[["stay","🏠","Stay"],["discover","🧭","Discover"],["chat","💬","Chat"]].map(([k,i,l])=>`<button class="${S.tab===k?"on":""}" data-tab="${k}"><i>${i}</i>${l}</button>`).join("")}</nav>`;
+  document.querySelectorAll("[data-tab]").forEach(x=>x.onclick=()=>{S.tab=x.dataset.tab;render();scrollTo(0,0);});
+  document.querySelectorAll("[data-row]").forEach(x=>x.onclick=()=>openRow(x.dataset.row));
+  document.querySelectorAll("[data-cat]").forEach(x=>x.onclick=()=>{S.cat=x.dataset.cat;render();});
+  document.querySelectorAll("[data-offer]").forEach(x=>x.onclick=()=>openOffer(x.dataset.offer));
+  wireTest();
+}
+function row(id,ic,t,s,lock){return `<button class="row" data-row="${id}"><div class="ic">${ic}</div><div class="tx"><b>${t}</b><span class="${lock?"lockbadge":""}">${s}</span></div><div class="ch">›</div></button>`;}
+function stayTab(){
+  const b=D.booking,p=D.prop;
+  const offers=D.offers.filter(o=>S.cat==="All"||o.cat===S.cat);
+  const cats=["All",...new Set(D.offers.map(o=>o.cat))];
+  return `<h2>${esc(p.name)}</h2>
+  ${row("dir","📍","Directions",esc(p.addr))}
+  <div class="tiles"><div class="tile"><span>Check in</span><b>${fmt(b.ci)}</b></div><div class="tile"><span>Check out</span><b>${fmt(b.co)}</b></div></div>
+  <h3>Your stay</h3>
+  ${row("entry","🚪","Entry guide","Check-in from "+esc(b.ciTime)+" · step-by-step photos")}
+  ${row("wifi","📶","Wi-Fi",unlocked()?esc(D.secret.wifiName):"Available from "+fmt(b.ci)+" at "+esc(b.ciTime),!unlocked())}
+  ${row("door","🔑","Door code",unlocked()?"Lockbox "+esc(D.secret.lockbox):"Available from "+fmt(b.ci)+" at "+esc(b.ciTime),!unlocked())}
+  ${row("rules","📋","House rules","Quiet hours, smoking, guests and more")}
+  ${row("parking","🚗","Parking",esc(p.parkingShort||"Your car space and how to get there"))}
+  ${row("manual","📖","House manual","Cooktop, linen, TV, intercom and more")}
+  ${p.bins?row("bins","🗑️","Trash & recycling",p.binsShort):""}
+  ${p.amen?row("amen","🏢","Building amenities","Gym, bikes and more"):""}
+  ${row("depart","🧳","Departure","Check-out by "+esc(b.coTime))}
+  <h3>Extras for your stay</h3>
+  <div class="chips">${cats.map(c=>`<button class="chip ${S.cat===c?"on":""}" data-cat="${c}">${c}</button>`).join("")}</div>
+  <div class="cards">${offers.map(o=>`<button class="card" data-offer="${o.id}"><div class="im" style="background-image:url('${o.img}')"><span class="tag">${S.req[o.id]?"✓ Requested":o.cat}</span></div><b>${esc(o.name)}</b><span>${esc(o.priceLabel)}</span></button>`).join("")}</div>
+  <h3>Your stay guide</h3>
+  <button class="big" data-row="guestinfo"><div class="im" style="background-image:url('${p.guideImg||""}');background-color:#cfd8e3"></div><b>Guest information</b><span>FAQs, safety and everything else</span></button>
+  <h3>You're all set</h3>
+  <div class="done"><span>👤</span><b>Your details</b><em>Saved</em></div>
+  ${needAgree()?`<div class="done"><span>✍️</span><b>Citi Stayz Guest Agreement</b><em>Signed</em></div>`:""}`;
+}
+function discoverTab(){
+  return `<h2>Discover Canberra</h2>
+  <div class="viator"><b style="font-size:18px">Tours & things to do</b><p style="margin:6px 0 12px;opacity:.9">Hand-picked Canberra experiences, booked in a few taps.</p><a class="btn" style="background:#fff;color:#0b3d2e" href="${D.viator}" target="_blank" rel="noopener">Explore on Viator ↗</a></div>
+  ${D.recs.map(r=>`<button class="row" onclick="window.open('${r.url}','_blank')"><div class="ic">${r.ic}</div><div class="tx"><b>${esc(r.name)}</b><span>${esc(r.sub)}</span></div><div class="ch">↗</div></button>`).join("")}`;
+}
+function chatTab(){
+  return `<h2>Need a hand?</h2><p style="color:var(--muted)">We usually reply within minutes between 7am and 9pm.</p>
+  <a class="btn" href="sms:+61493173122">💬 Text us</a><a class="btn alt" href="tel:+61493173122">📞 Call 0493 173 122</a><a class="btn alt" href="mailto:bookings@citistayz.com">✉️ Email bookings@citistayz.com</a>
+  <p style="color:var(--muted);font-size:14px;margin-top:16px">Emergency? Dial 000 first, then let us know.</p>`;
+}
+function openRow(id){
+  const b=D.booking,p=D.prop;
+  const lockMsg=`<div class="lockbox"><div style="font-size:34px">🔒</div><b>Unlocks ${fmt(b.ci)} at ${esc(b.ciTime)}</b><p style="margin:6px 0 0;color:var(--muted)">For your security, this shows on arrival day. Early check-in approved? It unlocks earlier.</p></div>`;
+  const m={
+    dir:`<h3>📍 Directions</h3><p>${esc(p.addr)}</p><a class="btn" href="https://maps.google.com/?q=${encodeURIComponent(p.addr)}" target="_blank" rel="noopener">Open in Google Maps ↗</a>`,
+    entry:`<h3>🚪 Entry guide</h3>${p.keywhere}<a class="btn" href="${p.arrival}" target="_blank" rel="noopener">Open step-by-step arrival guide ↗</a><p style="color:var(--muted);font-size:14px">Photos and videos for getting your keys, parking and finding the apartment. Opens in a new window.</p>`,
+    wifi:`<h3>📶 Wi-Fi</h3>${unlocked()?`<p><b>Network:</b> ${esc(D.secret.wifiName)}<br><b>Password:</b> ${esc(D.secret.wifiPass)}</p><p style="color:var(--muted);font-size:14px">Not showing up? Turn the modem off for 30 seconds, plug it back in and wait 5 minutes.</p>`:lockMsg}`,
+    door:`<h3>🔑 Door code</h3>${unlocked()?`<div class="lockbox"><div>Lockbox number</div><div class="code">${esc(D.secret.lockbox)}</div><div style="margin-top:8px">Code</div><div class="code">${esc(D.secret.code)}</div></div><p style="font-size:14px;color:var(--muted)">Take your keys, close the box and scramble the code.</p><a class="btn alt" href="${p.arrival}" target="_blank" rel="noopener">Where is the lockbox? ↗</a>`:lockMsg}`,
+    rules:`<h3>📋 House rules</h3><ul><li>Check-in from 3:00pm, check-out by 10:00am</li><li>Quiet hours 10pm to 8am. No parties or events</li><li>Strictly non-smoking, including balconies</li><li>No pets unless approved in writing</li><li>Only the guests on your booking</li><li>Lost keys $275 · Lockout $165 (inc GST)</li></ul><a class="btn alt" href="https://www.citistayz.com/houserules" target="_blank" rel="noopener">Full house rules ↗</a>`,
+    parking:`<h3>🚗 Parking</h3>${p.parking||"<p>Your car space details and photos are in your arrival guide.</p>"}<a class="btn" href="${p.arrival}" target="_blank" rel="noopener">Parking photos and video ↗</a>`,
+    manual:`<h3>📖 House manual</h3><div>${p.manual}</div>`,
+    bins:`<h3>🗑️ Trash & recycling</h3>${p.bins||""}`,
+    amen:`<h3>🏢 Building amenities</h3>${p.amen||""}`,
+    depart:`<h3>🧳 Departure</h3><p>Check-out is by <b>${esc(b.coTime)}</b>. Want to sleep in? Request a late check-out in Extras.</p><h4>Keys</h4><ul><li><b>1 set:</b> leave it inside on the kitchen table.</li><li><b>2 sets:</b> leave 1 inside on the kitchen table, and put 1 back in the lockbox.</li></ul><p>Make sure the door is locked behind you. Thanks for staying!</p>`,
+    guestinfo:`<h3>Guest information</h3><h4>About the property</h4>${p.about}<h4>FAQs</h4>${p.faqs}<h4>Safety</h4>${p.safety}`
+  };
+  sheet(m[id]||"");
+}
+function openOffer(id){
+  const o=D.offers.find(x=>x.id===id);let pick=null;
+  const draw=()=>{sheet(`<div style="height:170px;border-radius:16px;background:#ddd url('${o.img}') center/cover;margin:30px 0 14px"></div><h3>${esc(o.name)}</h3><p>${esc(o.desc)}</p><ul class="hl">${o.hl.map(h=>`<li>${esc(h)}</li>`).join("")}</ul>
+  ${o.opts?`<b>${esc(o.optLabel)}</b>${o.opts.map((x,i)=>`<div class="opt ${pick===i?"on":""}" data-o="${i}"><div>${esc(x.t)}<small>${esc(x.s||"")}</small></div><b>$${(x.p/100).toFixed(2)}</b></div>`).join("")}`:""}
+  ${o.q?`<label>${esc(o.q)}</label><input id="oq">`:""}
+  ${S.req[id]?`<div class="done"><span>✓</span><b>Requested</b><em>We'll confirm soon</em></div>`:`<button class="btn" id="reqb">${o.opts?"Request":"Request · "+esc(o.priceLabel)}</button><p style="color:var(--muted);font-size:13px;text-align:center">Your card is only charged if we approve.</p>`}`);
+  document.querySelectorAll("[data-o]").forEach(x=>x.onclick=()=>{pick=+x.dataset.o;draw();});
+  const r=$("#reqb");if(r)r.onclick=()=>{if(o.opts&&pick==null){toast("Pick an option first");return;}S.req[id]=true;closeSheet();render();toast("Request sent. Test card hold placed (Stripe test mode)");};};
+  draw();
+}
+function renderCover(){const b=D.booking,p=D.prop;
+  $("#app").innerHTML=`<div class="cover"><img class="logo" src="${D.logo}" alt="Citi Stayz"><div class="cw">Welcome</div><h1>${esc(b.first)} ${esc(b.last||"")}</h1><p class="sub">Please see your stay details below.</p>
+  <div class="cbox"><div class="cl">Property</div><div class="cv">${esc(p.name)}</div>
+  <div class="cgrid"><div><div class="cl">Check in</div><div class="cv">${fmt(b.ci)}</div><div class="cs">from ${esc(b.ciTime)}</div></div><div><div class="cl">Check out</div><div class="cv">${fmt(b.co)}</div><div class="cs">by ${esc(b.coTime)}</div></div></div>
+  <div class="cgrid"><div><div class="cl">Guests</div><div class="cv">${b.guests} ${b.guests==1?"guest":"guests"}</div></div><div><div class="cl">Booking</div><div class="cv">#${esc(b.res)}</div></div></div></div>
+  <button class="btn" id="cgo">Start pre-arrival</button><p class="cs" style="text-align:center;margin-top:10px">Takes about 2 minutes. Your guide unlocks when it's done.</p></div>${testPanel()}`;
+  $("#cgo").onclick=()=>{S.cover=false;render();scrollTo(0,0);};wireTest();}
+function renderGate(){
+  const b=D.booking,p=D.prop,total=needAgree()?2:1;
+  const head=`<div class="hero"><div class="t"><div class="hey">Hey ${esc(b.first)}</div><h1>Before you arrive</h1></div></div><div class="sheetwrap"><h2>${esc(p.name)}</h2><div class="tiles"><div class="tile"><span>Check in</span><b>${fmt(b.ci)}</b></div><div class="tile"><span>Check out</span><b>${fmt(b.co)}</b></div></div><p style="color:var(--muted)">Complete ${total===2?"2 quick steps":"1 quick step"} to unlock your stay guide.</p><div class="steps">${Array.from({length:total},(_,i)=>`<i class="${i<S.step?"on":""}"></i>`).join("")}</div>`;
+  if(!S.detailsDone){
+    $("#app").innerHTML=head+`<h3 style="margin-top:4px">Your details</h3><p style="color:var(--muted)">A few quick details so we can get you settled in and reach you if anything comes up during your stay.</p>
+    <label>Full name</label><input id="f1" autocomplete="name"><label>Mobile</label><input id="f2" type="tel" placeholder="04XX XXX XXX" autocomplete="tel"><label>Email</label><input id="f3" type="email" placeholder="you@example.com" autocomplete="email">
+    <label>Estimated arrival time</label><select id="f4"><option value="">Select a time</option>${["Before 3pm","3pm","4pm","5pm","6pm","7pm","8pm","9pm","10pm","After 10pm"].map(t=>`<option>${t}</option>`).join("")}</select>
+    <label>Company name <small>(if you're travelling for work)</small></label><input id="f5">
+    <label>Do you require a tax invoice for your stay? <small>For business or expense claims.</small></label><select id="f6"><option value="">Choose</option><option>Yes, please</option><option>No, thank you</option></select>
+    <label>Email address for invoice <small>(if different)</small></label><input id="f7" type="email" placeholder="e.g. your accounts or travel team">
+    <label class="check"><input type="checkbox" id="f8"> Keep me updated. Send me Citi Stayz offers and direct booking deals. Unsubscribe anytime.</label>
+    <div class="err" id="ferr"></div><button class="btn" id="fgo">Continue</button></div>${testPanel()}`;
+    $("#fgo").onclick=()=>{const v=k=>$("#"+k).value.trim();if(!v("f1")||!v("f2")||!v("f3")||!v("f4")){$("#ferr").textContent="Please fill in your name, mobile, email and arrival time.";return;}
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v("f3"))){$("#ferr").textContent="Please check your email address.";return;}
+      S.detailsDone=true;S.step=2;if(!needAgree())toast("You're all set. Your guide is unlocked");render();scrollTo(0,0);};
+  }else{
+    $("#app").innerHTML=head+`<h3 style="margin-top:4px">Citi Stayz Guest Agreement</h3><div class="agree">${D.agreement}</div>
+    <label>Sign here</label><canvas id="sig"></canvas><button class="chip" id="sigclr" style="margin-top:8px">Clear</button>
+    <label class="check"><input type="checkbox" id="agr"> I have read and agree to this agreement, the House Rules and the Terms and Conditions.</label>
+    <div class="err" id="aerr"></div><button class="btn" id="ago">Sign and unlock my guide</button></div>${testPanel()}`;
+    const c=$("#sig"),x=c.getContext("2d");let draw=false,inked=false;const fit=()=>{const r=c.getBoundingClientRect();c.width=r.width*2;c.height=r.height*2;x.scale(2,2);x.lineWidth=2.2;x.lineCap="round";};fit();
+    const pt=e=>{const r=c.getBoundingClientRect(),t=e.touches?e.touches[0]:e;return[t.clientX-r.left,t.clientY-r.top];};
+    c.onpointerdown=e=>{draw=true;const[a,b2]=pt(e);x.beginPath();x.moveTo(a,b2);};c.onpointermove=e=>{if(!draw)return;const[a,b2]=pt(e);x.lineTo(a,b2);x.stroke();inked=true;};c.onpointerup=c.onpointerleave=()=>draw=false;
+    $("#sigclr").onclick=()=>{x.clearRect(0,0,c.width,c.height);inked=false;};
+    $("#ago").onclick=()=>{if(!inked){$("#aerr").textContent="Please sign in the box.";return;}if(!$("#agr").checked){$("#aerr").textContent="Please tick to agree.";return;}S.agreeDone=true;toast("You're all set. Your guide is unlocked");render();scrollTo(0,0);};
+  }
+  wireTest();
+}
+function testPanel(){return `<div class="test"><b>🧪 Test controls (only in this test version)</b>
+  <div class="chips">${[["before","Before check-in"],["during","After 3pm check-in"],["after","After checkout"]].map(([k,l])=>`<button class="chip ${S.phase===k?"on":""}" data-ph="${k}">${l}</button>`).join("")}</div>
+  <div class="chips">${["Booking.com","Airbnb","CTM"].map(k=>`<button class="chip ${S.channel===k?"on":""}" data-chn="${k}">${k}</button>`).join("")}</div>
+  <button class="chip" data-reset="1">↺ Restart as a new guest</button></div>`;}
+function wireTest(){document.querySelectorAll("[data-ph]").forEach(x=>x.onclick=()=>{S.phase=x.dataset.ph;render();});
+  document.querySelectorAll("[data-chn]").forEach(x=>x.onclick=()=>{S.channel=x.dataset.chn;render();});
+  document.querySelectorAll("[data-reset]").forEach(x=>x.onclick=()=>{Object.assign(S,{cover:true,detailsDone:false,agreeDone:false,step:1,req:{},phase:"before",tab:"stay"});render();scrollTo(0,0);});}
+render();
+</script></body></html>
